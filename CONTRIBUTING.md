@@ -30,7 +30,7 @@ Protocol changes belong in `spec/MA-1.md` with an Appendix C changelog entry. Bu
 
 ## Security
 
-If you believe a contribution could leak identity, privilege, or production implementation details, open a **private** security advisory on GitHub or email the maintainers before publishing a public PR.
+See [SECURITY.md](SECURITY.md). If you believe a contribution could leak identity, privilege, or production implementation details, open a **private** [security advisory](https://github.com/mirror-abyss/memory-core/security/advisories/new) before publishing a public PR.
 
 ## Code of conduct
 
