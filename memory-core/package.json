@@ -1,0 +1,40 @@
+{
+  "name": "@mirror-abyss/memory-core",
+  "version": "0.1.0",
+  "description": "Reference implementation of the Mirror Abyss Protocol MA-1 (Memory Continuity) — episodic capture, indexing, recall, and context assembly. Draft 0.1.0.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "agent",
+    "memory",
+    "episodic-memory",
+    "context-assembly",
+    "mirror-abyss",
+    "ma-1",
+    "protocol"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5",
+    "vitest": "^4.1.5"
+  }
+}

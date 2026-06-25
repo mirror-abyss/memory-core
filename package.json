@@ -1,0 +1,18 @@
+{
+  "name": "@mirror-abyss/repo-tooling",
+  "version": "0.1.0",
+  "description": "Repo-level lint tooling for the Mirror Abyss memory-core monorepo. The shippable packages live in memory-core/ and examples/.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint memory-core/src memory-core/tests examples"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "typescript": "^5",
+    "typescript-eslint": "^8.10.0"
+  }
+}

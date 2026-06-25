@@ -1,0 +1,62 @@
+name: ci
+
+# Three machine-health gates for the Mirror Abyss memory-core repo:
+#   tsc --noEmit  ·  vitest run  ·  eslint
+# Matches the contract stated in CONTRIBUTING.md.
+#
+# This is a PUBLIC repository, so GitHub-hosted Actions minutes are free and
+# unmetered — unlike a private repo (where a push+PR double-trigger would burn
+# billed minutes). We therefore run on both `pull_request` and `push: main`:
+# PRs are validated before merge, and main is re-validated after merge.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  memory-core:
+    name: memory-core (tsc + vitest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: memory-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+
+  examples:
+    name: examples (tsc + vitest + run)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm start
+
+  lint:
+    name: eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run lint
