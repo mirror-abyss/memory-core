@@ -1,0 +1,48 @@
+---
+name: Spec feedback
+description: Propose a change or clarification to spec/MA-1.md (Draft protocol)
+title: "[spec]: "
+labels:
+  - spec
+body:
+  - type: markdown
+    value: |
+      Protocol changes belong in `spec/MA-1.md` with an Appendix C changelog entry. **Do not open a PR that silently changes TypeScript interfaces** — discuss here first.
+
+  - type: textarea
+    id: section
+    attributes:
+      label: Spec section(s)
+      placeholder: "e.g. §4.2 assemble(), Appendix B"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should change and why?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version_impact
+    attributes:
+      label: Version impact (your assessment)
+      options:
+        - protocolVersion bump (interface / normative behavior)
+        - schemaVersion bump (on-disk card shape)
+        - editorial only (no version bump)
+        - not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I read the open/closed line in memory-core/README.md
+          required: true
+        - label: This is not a request for production tuning secrets inside the reference impl
+          required: true

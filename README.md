@@ -1,5 +1,10 @@
 # Mirror Abyss Protocol
 
+[![ci](https://github.com/mirror-abyss/memory-core/actions/workflows/ci.yml/badge.svg)](https://github.com/mirror-abyss/memory-core/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/mirror-abyss/memory-core)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/mirror-abyss/memory-core?include_prereleases&label=release)](https://github.com/mirror-abyss/memory-core/releases/tag/v0.1.0-draft)
+[![Status](https://img.shields.io/badge/status-Draft-orange)](CHANGELOG.md)
+
 **Open specifications and reference implementations for long-lived AI agents.**
 
 The Mirror Abyss Protocol (镜渊协议) defines how agents capture episodic memory, assemble layered context, and maintain continuity across process restarts and vehicle changes. This repository is the public home for those specs and runnable reference code.
@@ -82,9 +87,13 @@ The paper reports what emerged in a production multi-agent OS; MA-1 is the proto
 
 ---
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes. Current tag: [`v0.1.0-draft`](https://github.com/mirror-abyss/memory-core/releases/tag/v0.1.0-draft).
+
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Every PR is reviewed for spec alignment and open/closed boundary hygiene.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Every PR is reviewed for spec alignment and open/closed boundary hygiene. [Code of Conduct](CODE_OF_CONDUCT.md) · [Security policy](SECURITY.md)
 
 ---
 
