@@ -24,6 +24,12 @@ npm start
 
 CI runs the same three gates: `tsc --noEmit`, `vitest run`, eslint.
 
+## Extension points
+
+MA-1 is designed to be extended by implementing interfaces, not by forking the spec. The primary hooks are `ContextProvider` (§4.1), `RecallStrategy` (§5.3), `StorageBackend` (§5.2), and `CardGenerator` (§5.1). See [`docs/extending-ma1.md`](docs/extending-ma1.md) for the contracts and worked examples.
+
+When contributing a new provider/strategy to the **reference** package, open an issue first: the reference intentionally bundles only the four standard providers and the deterministic baseline, to keep the open/closed line clear (production tuning is an implementer's moat, not reference scope).
+
 ## Spec changes
 
 Protocol changes belong in `spec/MA-1.md` with an Appendix C changelog entry. Bump `protocolVersion` per §8.1 rules; bump `schemaVersion` only when serialized data shapes change.

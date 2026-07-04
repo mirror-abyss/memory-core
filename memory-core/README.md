@@ -6,6 +6,8 @@ MA-1 gives an agent a memory that survives the vehicle it runs in: interactions 
 
 > **Status: Draft 0.1.0.** Interface shapes, enums, and semantics MAY change before `1.0.0`. This is published to invite review and implementation feedback, not as a frozen API.
 
+**Building on MA-1?** The protocol is designed to be extended by implementing interfaces — `ContextProvider`, `RecallStrategy`, `StorageBackend`, `CardGenerator`. See [`docs/extending-ma1.md`](../docs/extending-ma1.md) for contracts and worked examples.
+
 ## What's in the box (§3–§5)
 
 | Area | Export | Notes |
