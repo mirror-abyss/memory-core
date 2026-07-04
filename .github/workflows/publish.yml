@@ -1,0 +1,79 @@
+name: publish
+
+# Publishes @mirror-abyss/memory-core to npm.
+#
+# Trigger: push a version tag `v*` (e.g. `v0.1.0`, `v0.2.0-beta.1`).
+# The tag MUST match `memory-core/package.json` `version` (the job verifies this
+# before publishing, so a mismatched tag fails the build instead of publishing
+# the wrong version).
+#
+# What it does: install → typecheck → test → build → npm publish --access public
+# --provenance. `prepublishOnly` also chains the three quality gates, so a broken
+# build cannot ship. Provenance requires a public repo + OIDC (this repo is public).
+#
+# Who cuts the tag: a deployment action (Forge, per hive-workflows §1.1 ⑨ / §3).
+# The workflow itself never decides to publish — it only reacts to an intentional
+# tag push.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Manual publish trigger (rare; prefer tag push)'
+        required: false
+        default: 'manual'
+
+permissions:
+  contents: read
+  id-token: write  # npm provenance (public repo OIDC)
+
+jobs:
+  publish-memory-core:
+    name: publish @mirror-abyss/memory-core
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: memory-core
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify tag matches package version
+        working-directory: .
+        run: |
+          set -euo pipefail
+          PKG_VERSION=$(node -p "require('./memory-core/package.json').version")
+          if [ "${GITHUB_EVENT_NAME}" = "push" ]; then
+            TAG="${GITHUB_REF_NAME}"
+            if [ "v${PKG_VERSION}" != "${TAG}" ]; then
+              echo "::error::Tag '${TAG}' does not match package version 'v${PKG_VERSION}'. Aborting to prevent wrong-version publish."
+              exit 1
+            fi
+            echo "Tag '${TAG}' matches package version 'v${PKG_VERSION}'."
+          else
+            echo "Manual dispatch (event=${GITHUB_EVENT_NAME}); skipping tag-version match check. Package version: v${PKG_VERSION}"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - run: npm install
+
+      - name: Quality gate (typecheck + test + build)
+        run: |
+          npm run typecheck
+          npm test
+          npm run build
+
+      - name: Verify dist is non-empty
+        run: |
+          test -s dist/index.js || { echo "::error::dist/index.js missing or empty"; exit 1; }
+          test -s dist/index.d.ts || { echo "::error::dist/index.d.ts missing or empty"; exit 1; }
+
+      - run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
