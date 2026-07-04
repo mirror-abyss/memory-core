@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Reference implementation of the Mirror Abyss Protocol MA-1 (Memory Continuity) — episodic capture, indexing, recall, and context assembly. Draft 0.1.0.",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mirror-abyss/memory-core"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
