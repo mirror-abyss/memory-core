@@ -9,6 +9,9 @@ The one thing MA-1 is about, in a single runnable script: an agent learns a fact
 ### Run it
 
 ```bash
+# 1. build memory-core's dist once (examples depends on the built package via file:../memory-core)
+cd ../memory-core && npm install && npm run build && cd ../examples
+# 2. install + run
 npm install
 npm start
 ```
