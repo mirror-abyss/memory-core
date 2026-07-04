@@ -1,6 +1,6 @@
 # Mirror Abyss Protocol — MA-1: Memory Continuity Protocol
 
-**Status:** Draft (interface freeze)
+**Status:** Beta (interface frozen, behavior may tune)
 **Version:** 0.2.0 (`protocolVersion`)
 **Layer:** MA-1 (depends on MA-0 for signature/identity primitives)
 **License:** Apache-2.0
@@ -10,7 +10,7 @@
 
 ## §0 Status of This Document
 
-This document is a **Draft (0.2.0)**. It is published to invite review and implementation feedback. It is **not** a stable specification: interface shapes, enums, and semantics MAY change in response to feedback before `1.0.0`. At `0.2.0` the interfaces are frozen and the §3–§5 reference implementation is usable (see §8.1); a full changelog is in Appendix C.
+This document is a **Beta (0.2.0)**. It is published to invite review and implementation feedback while signaling that the core is safe to build on. The §3 schema and the §4–§5 interface shapes are **frozen**: you may build on them, and any breaking change will increment the major version (semver). What is **not** frozen is behavior — recall ranking, card generation quality, eviction policy — which remains tunable per implementation (see §1.2). A full changelog is in Appendix C.
 
 We label this Draft honestly and deliberately. A protocol that calls itself Stable before it has earned it spends credibility it has not yet banked. Where the reference implementation for a capability does not yet exist, this document says so explicitly rather than implying completeness.
 
@@ -573,7 +573,7 @@ For any layer marked `required: true` in a `ContextProfile.identityLayer`, the `
 | Stage | `protocolVersion` | Meaning |
 |---|---|---|
 | Initial draft | `0.1.0` | First published draft; interfaces invited feedback. |
-| Interface freeze (current) | `0.2.0` | Interfaces frozen; §3–§5 reference implementation usable. |
+| Beta (current) | `0.2.0` | Interfaces frozen (§3 schema + §4–§5 shapes); safe to build on, breaking changes increment major version. Behavior (recall ranking, card quality, eviction) tunable per implementation. |
 | Stable | `1.0.0` | Interfaces stable; `schemaVersion` guarantees backward compatibility. |
 
 `schemaVersion` remains `0.1.0` at `protocolVersion` `0.2.0`: the 0.2.0 changes were interface signatures (§4.3), not the serialized data shape. The two versions advance on independent axes (§8.2).
@@ -629,6 +629,10 @@ The layered-memory and three-layer-self framing that informs this protocol is de
 
 ## Appendix C — Changelog
 
+### 0.2.0 (Beta label) — Stability signaling (2026-07-04)
+
+Editorial relabel from Draft to Beta: makes the existing interface-freeze commitment (0.2.0, see below) explicit and safe to build on. §3 schema and §4–§5 interface shapes frozen; breaking changes will increment the major version. Behavior (recall ranking, card quality, eviction) tunable per implementation (§1.2). No interface or data-schema change — protocolVersion remains 0.2.0, schemaVersion remains 0.1.0.
+
 ### 0.2.0 — Interface freeze (2026-06-13)
 
 Interfaces frozen; the §3–§5 reference implementation (`@mirror-abyss/memory-core`) landed and is usable. Two §4.3 interface corrections, both surfaced while building the reference implementation against the frozen interfaces. **No data-schema change** — `schemaVersion` stays `0.1.0` (§8.2).
@@ -644,4 +648,4 @@ First published draft. Defined §2–§5 interfaces and the §6 continuity layer
 
 ---
 
-*MA-1 is a Draft (0.2.0). It is published to be built against and argued with. Originated by Archi Hive; offered to the agent ecosystem under Apache-2.0.*
+*MA-1 is a Beta (0.2.0). It is published to be built against and argued with. Originated by Archi Hive; offered to the agent ecosystem under Apache-2.0.*
