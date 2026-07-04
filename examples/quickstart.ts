@@ -6,7 +6,7 @@
  * "restarts" (all in-memory state is dropped), and in a fresh session the agent
  * recalls the fact from disk and assembles it back into its context.
  *
- * Run:  npm install && npm start
+ * Run:  (cd ../memory-core && npm run build) && npm install && npm start
  */
 import { promises as fs } from 'node:fs';
 import * as os from 'node:os';
