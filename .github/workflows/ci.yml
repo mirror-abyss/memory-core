@@ -57,6 +57,28 @@ jobs:
       - run: npm test
       - run: npm start
 
+  mcp-server:
+    name: mcp-server (tsc + vitest + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mcp-server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # mcp-server depends on @mirror-abyss/memory-core via file:..; the package
+      # ships built artifacts (exports → dist), so build memory-core first.
+      - run: npm install
+        working-directory: memory-core
+      - run: npm run build
+        working-directory: memory-core
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
   lint:
     name: eslint
     runs-on: ubuntu-latest
