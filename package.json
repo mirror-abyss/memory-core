@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint memory-core/src memory-core/tests examples"
+    "lint": "eslint memory-core/src memory-core/tests mcp-server/src mcp-server/tests examples"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
