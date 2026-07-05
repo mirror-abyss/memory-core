@@ -1,10 +1,10 @@
 # @mirror-abyss/memory-core
 
-Reference implementation of the **Mirror Abyss Protocol — MA-1 (Memory Continuity Protocol)**, Draft `0.1.0`.
+Reference implementation of the **Mirror Abyss Protocol — MA-1 (Memory Continuity Protocol)**, Beta `0.2.0`.
 
 MA-1 gives an agent a memory that survives the vehicle it runs in: interactions are compressed into structured **episodic cards**, indexed, recalled on demand, and assembled into a layered context for the next model call. This package is the functional reference for spec **§3–§5**.
 
-> **Status: Draft 0.1.0.** Interface shapes, enums, and semantics MAY change before `1.0.0`. This is published to invite review and implementation feedback, not as a frozen API.
+> **Status: Beta 0.2.0.** The §3 schema and §4–§5 interface shapes are **frozen** — safe to build on, and any breaking change will increment the major version (semver). What is **not** frozen is behavior (recall ranking, card generation quality, eviction policy), which remains tunable per implementation. Published to invite review and implementation feedback; not yet Stable (`1.0.0`).
 
 **Building on MA-1?** The protocol is designed to be extended by implementing interfaces — `ContextProvider`, `RecallStrategy`, `StorageBackend`, `CardGenerator`. See [`docs/extending-ma1.md`](../docs/extending-ma1.md) for contracts and worked examples.
 

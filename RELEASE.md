@@ -6,7 +6,7 @@ This repo publishes one npm package: `@mirror-abyss/memory-core`. Releases are *
 
 | Axis | Lives in | Meaning | Example |
 |---|---|---|---|
-| **Package version** | `memory-core/package.json` `version` | The npm tarball version. Tag must match `v<this>`. | `0.1.0` |
+| **Package version** | `memory-core/package.json` `version` | The npm tarball version. Tag must match `v<this>`. | `0.2.0` |
 | **`protocolVersion`** | `spec/MA-1.md` §0 + §8.1 | Spec interface version. Bumps only when interfaces change. | `0.2.0` |
 | **`schemaVersion`** | `spec/MA-1.md` §8.1 | Serialized card/anchor data shape. Bumps only when on-disk data shape changes. | `0.1.0` |
 
@@ -17,8 +17,8 @@ The package version and the spec versions advance **independently**. A package r
 1. Ensure `memory-core/package.json` `version` is the version you want to publish.
 2. On `main`, after the relevant PRs are merged, tag and push:
    ```bash
-   git tag -a v0.1.0 -m "Release @mirror-abyss/memory-core 0.1.0"
-   git push origin v0.1.0
+   git tag -a v0.2.0 -m "Release @mirror-abyss/memory-core 0.2.0"
+   git push origin v0.2.0
    ```
 3. The `publish` workflow runs: install → typecheck → test → build → verify dist → `npm publish --access public --provenance`. It verifies `v<package version>` matches the tag before publishing; a mismatched tag fails the build.
 4. Confirm: `npm view @mirror-abyss/memory-core version` returns the new version (no longer 404).
